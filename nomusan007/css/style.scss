@@ -1,0 +1,1962 @@
+* {
+    box-sizing: border-box;
+  }
+
+@mixin mq-tablet($width: 768px) {
+    @media only screen and (max-width: $width) {
+        @content;
+    }
+}
+@mixin mq-smartP($width: 500px) {
+    @media only screen and (max-width: $width) {
+        @content;
+    }
+}
+@mixin mq-iphone($width: 376px) {
+    @media only screen and (max-width: $width) {
+        @content;
+    }
+}
+
+
+@function pcvw($size, $width: 1919) {
+    $no_unit_size:$size / ($size * 0 + 1);
+    @return(100 / $width) * $no_unit_size*1vw;
+}
+@function tbvw($size, $width: 768) {
+    $no_unit_size:$size / ($size * 0 + 1);
+    @return(100 / $width) * $no_unit_size*1vw;
+}
+@function smvw($size, $width: 500) {
+    $no_unit_size:$size / ($size * 0 + 1);
+    @return(100 / $width) * $no_unit_size*1vw;
+}
+@function ivw($size, $width: 376) {
+    $no_unit_size:$size / ($size * 0 + 1);
+    @return(100 / $width) * $no_unit_size*1vw;
+}
+
+@mixin eng-var {
+    display: block;
+    text-decoration: none;
+    line-height: pcvw(50);
+    color: #000;
+    letter-spacing: 0.08em;
+    max-width: pcvw(526);
+    
+    @include mq-tablet{
+        max-width: 250px;
+        font-size: .6vw;
+    }
+    @include mq-iphone {
+        max-width: 250px;
+        margin-top: 50px;
+        font-size: 4vw;
+        line-height: 1.3;
+    }
+}
+
+@mixin readmore{
+    display: inline-block;
+    border: 1px solid #000;
+    font-size: pcvw(20);
+    padding: pcvw(20) pcvw(40);
+    text-decoration: none;
+    color: #000;
+    line-height: pcvw(27);
+    text-align: center;
+    @include mq-tablet{
+        font-size:  tbvw(7);
+        padding: tbvw(8) tbvw(20);
+    }
+    @include mq-smartP{
+        font-size:  smvw(7);
+        padding: tbvw(8) tbvw(20);
+        line-height: 13px;
+    }
+    @include mq-iphone {
+        min-width: ivw(122.54);
+        height: 34.44px;
+        padding: 9px auto;
+        font-size: ivw(12);
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-family: toppan-bunkyu-mincho-pr6n, serif;
+    font-style: normal;
+    font-weight: 400;
+    
+}
+$midashi:  toppan-bunkyu-midashi-min-st, serif;
+
+header {
+    margin: 0;
+    width: auto;
+}
+
+.l-mainvisual {
+   width: auto;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+}
+    
+.l-nav{
+    width: 100%;
+    height: auto;
+    background-color: rgba($color: #000000, $alpha: .8);
+    z-index: 6;
+    position: fixed;
+    top: 0;
+    @include mq-smartP() {
+      height: auto;  
+    }
+}
+@mixin list {
+    display: block;
+    color: white;
+    font-family: $midashi;
+    font-size: pcvw(25);
+    text-decoration: none;
+    margin-right: pcvw(85);    
+    text-align: center;
+    @include mq-tablet {
+        width: tbvw(200);
+        font-size: tbvw(15);
+        margin: tbvw(20) auto;
+        transform: translate3d(0, tbvw(-30), 0);
+        transition: transform .7s ease-in; 
+        opacity: 0;
+        &.show {
+            transform: translate3d(0, 0, 0);
+            transition: transform 1s ease-out; 
+            opacity: 1;
+       }
+    }
+    @include mq-iphone{
+        width: ivw(97);
+        font-size: ivw(15);
+        margin-bottom: ivw(55);
+    }
+}
+@mixin listsub {
+    font-size: pcvw(15);
+    margin-top: pcvw(10);
+    color: #fff;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+ }
+ 
+.p-nav {
+    height: 137px;
+    display: flex;
+    padding: 20px 0 20px pcvw(50);
+    justify-content: space-between;
+    font-family: toppan-bunkyu-midashi-min-st, serif;
+    align-items:  center;
+    @include mq-tablet {
+        height: 54.1px;
+        padding: 0;
+        margin: 0;
+    }
+    @include mq-smartP {
+        height: 29.24px;
+    }
+    @include mq-iphone() {
+        height: 62.31px;
+    }
+
+   
+    &__logo{
+        min-width: pcvw(320 );
+        color: white;
+        font-family: $midashi;
+        font-size: pcvw(23);
+        text-decoration: none;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        position: relative;
+        letter-spacing: .2vw;
+        @include mq-tablet {
+           &--left {
+               display: none;
+           }
+        }
+        &--img {
+            display: none;
+            @include mq-tablet{
+                display: block;
+                background-image: url('../img/p-logtab.png');
+                z-index: 7;
+                width: 139px;
+                height: 27px;
+                margin-left: tbvw(29);
+                background-size: 100%;
+                background-size: cover;
+                @include mq-smartP {
+                    width: 85px;
+                    height: 17px;
+                    @include mq-iphone {
+                        background-image: url('../img/logo.png');
+                        width: 162px;
+                        height: 32px;
+                        margin-left: ivw(16);
+                    }
+                }
+            }
+        }
+        &--right {
+            font-size: pcvw(40);
+            margin-left: pcvw(25);
+            @include mq-tablet {
+                display: none;
+             }
+        }
+        &::after{
+           content: "-Yakushima Lodge& Food Atelier-";
+           position: absolute;
+           width: pcvw(400);
+           min-width: 320px;
+           top: pcvw(45);
+           left: 0;
+           font-size: pcvw(15);
+           margin-bottom: pcvw(10);
+           letter-spacing: .2vw;
+           @include mq-tablet {
+               display: none;
+            }
+        }
+    }
+    &__sp-menubar{
+        display: none;
+        @include mq-tablet{
+            font-weight: 900;
+            color: #fff;
+            display: block;
+            font-size: tbvw(31);
+            margin-right: tbvw(26.5) ;
+            cursor: pointer;
+        }
+        @include mq-smartP {
+            font-size: smvw(16.69);
+            margin-right: ivw(14.3);
+        }
+        @include mq-iphone() {
+            font-size: ivw(22.96);
+            margin-right: ivw(25.3);    
+        }
+    }
+    
+    &__lists {
+        min-width: 500px;
+        font-size: 1.5vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include mq-tablet {
+            display: none;
+        }
+        
+        &--list1  {
+            @include list;
+            &::after {
+                content: "-いろはのこと-";
+                @include listsub;
+            }
+        }
+        &--list2  {
+            @include list;
+            &::after {
+                content: "-宿泊ロッジ-";
+                @include listsub;
+            }
+        
+        }
+
+        &--list3  {
+            @include list;
+            &::after {
+                content: "-食工房/ラウンジ-";
+                @include listsub;
+            }
+        }
+        &--list4  {
+            @include list;
+            &::after {
+                content: "-体験プログラム-";
+                @include listsub;
+            }
+        }
+        &--list5  {
+            @include list;
+            &::after {
+                content: "-ご予約-";
+                @include listsub;
+            }
+        }
+    }   
+}
+.p-screenshow {
+    position: relative;  
+    @include mq-iphone{
+        display: none;
+    }
+    &__home{
+        width: 100%;
+        height: auto;
+        @include mq-tablet{   
+            height: 374.19px;
+        }
+        @include mq-smartP {
+            height: 230px;
+        }
+        @include mq-iphone {
+         display: none;
+         }
+    }
+    &__iphone{
+        display: none;
+        @include mq-iphone{
+            width: 100%;
+            display: block;
+        }
+        &--home{
+            display: none;
+            @include mq-iphone{
+                width: 100%;
+                display: block;
+            }
+        }
+    }
+}
+.l-screenshow{
+    position: relative;
+    &__logowhite{
+        width: auto;
+        min-width: 750px;
+        height: 471px;
+        display: block;
+        z-index: 2;
+        margin: auto;
+       position: absolute;
+       top: 0;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       
+        @include mq-tablet{
+            min-width: 358px;
+            height: 187px;
+        }
+        @include mq-smartP{
+            background-position: center;
+            min-width: 192.9px;
+            height: 100.73px;
+        }
+        @include mq-iphone{
+            min-width: ivw(298);
+            height: 171.1px;
+        }
+    }
+}
+
+.l-overlay {
+    display: none;
+    @include mq-tablet {
+        display: block;
+        position: fixed;
+        top: -100%;
+        left: 0;
+        height: 374.19px;
+        width: 100vw;
+        background:  rgba($color: #000000, $alpha: .8);
+        text-align: center;
+        pointer-events: none;
+        transition:  top 1s;
+        z-index: 5;
+        @include mq-smartP {
+            height: 230px;
+        }
+        @include mq-iphone {
+            height: ivw(668);
+            top: 0;
+            left: 100%;
+            transition: left 1s;
+        }
+        &.show {
+            top: 0;
+            pointer-events: auto;
+            @include mq-iphone {
+                left: ivw(65);
+                width: ivw(310);
+            }
+        }
+
+        &__logo{
+            &--img {
+                display: none;
+                @include mq-tablet{
+                    display: block;
+                    position: absolute;
+                    background-image: url('../img/p-logtab.png');
+                    width: 139px;
+                    height: 27px;
+                    top: tbvw(14);
+                    left: tbvw(29);
+                    background-size: 100%;
+                    background-size: cover;
+                    @include mq-iphone {
+                        background-image: url('../img/logo.png');
+                        width: ivw(162);
+                        height: ivw(32);
+                        left: ivw(18);
+                        top: ivw(15);
+                    }
+                }
+            }
+        }
+        &__sp-menuclose{
+            display: block;
+            @include mq-tablet{
+                font-weight: 900;
+                color: #fff;
+                display: block;
+                font-size: tbvw(31);
+                position: absolute;
+                cursor: pointer;
+                right: tbvw(27.5);
+                top: tbvw(20.5);
+            }
+            @include mq-iphone {
+                top: ivw(24.5);
+                right: ivw(27.3);
+                font-size: ivw(30);
+            }
+            &#close {
+                @include mq-tablet {
+                    display: block;
+                }
+            }
+           
+        }
+        &__lists{
+            list-style-type: none;
+            font-family: $midashi;
+            margin: 0;
+            padding: 0;
+            margin-top: tbvw(70);
+            @include mq-iphone{
+                width: ivw(106);
+                margin: ivw(126 ) auto;
+          
+            }
+
+            
+            &--list1  {
+                @include list;
+                &::after {
+                    content: "-いろはのこと-";
+                    @include listsub;
+                }
+
+              
+            }
+            &--list2  {
+                @include list;
+                    &::after {
+                        content: "-宿泊ロッジ-";
+                        @include listsub;
+                    }
+  
+                }
+                &--list3  {
+                    @include list;
+                    &::after {
+                        content: "-食工房/ラウンジ-";
+                        @include listsub;
+                    }
+                }
+                &--list4  {
+                    @include list;
+                    &::after {
+                        content: "-体験プログラム-";
+                        @include listsub;
+                    }
+                }
+                &--list5  {
+                    @include list;
+                    &::after {
+                        content: "-ご予約-";
+                        @include listsub;
+                    }
+                }
+        }
+    }
+    &__logos{
+        @include mq-tablet {
+            color: #fff;
+            width: tbvw(102);
+            height: auto;
+            font-size: tbvw(9);
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            z-index: 6;
+            right: tbvw(43);
+            top: tbvw(340);
+
+        }
+        @include mq-smartP {
+            width: auto;
+            height: auto;
+            font-size: .4em;
+            display: block;
+            position: absolute;
+        }
+        @include mq-iphone {
+            width: ivw(181);
+            font-size: ivw(20);
+            display: flex;
+            justify-content: space-between;
+            top: ivw(575.3);
+            left: ivw(66);
+        }
+    }
+}
+
+
+.l-about {
+    width: auto;
+    height: auto;
+    padding: pcvw(157.2) pcvw(136) pcvw(137.1) pcvw(155) ;
+    position: relative;
+    @include mq-tablet {
+        padding: tbvw(61.5) tbvw(30) tbvw(71.5) tbvw(62);
+        height: tbvw(520.42);
+    }
+    @include mq-smartP {
+       padding: smvw(34.8) smvw(49) smvw(33.4) smvw(54);
+       min-height: 406px;
+    }
+    @include mq-iphone {
+        padding: 0;
+        height: 848px;
+    }
+    
+    &__background {
+        width: pcvw(1000);
+        height: pcvw(700);
+        background-color: #F8F8F8;
+        z-index: -1;
+        position: absolute;
+        top: pcvw(282.8);
+        right: 50%;
+        transform: translateX(50%);
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        @include mq-tablet{
+            width: tbvw(459.6);
+            height: tbvw(280.12);
+            top: tbvw(108.2);
+            transform: none;
+            right: tbvw(90);
+
+        }
+        @include mq-smartP() {
+            display: none;
+        }
+        @include mq-iphone {
+            display: block;
+            width: ivw(208.14);
+            height: 745px;
+            right: 0;
+            top: 60px;
+        }
+    }
+}
+.p-about {
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    @include mq-smartP {
+        flex-flow: column;
+    }
+    &__intro{
+        width: 50%;
+        height: auto;
+        text-align: left;
+        @include mq-smartP {
+            width: 100%;
+        }
+        @include mq-iphone() {
+            text-align: center;
+            margin: 0 ;
+            padding: 0;
+        }
+
+        &--title {
+            font-size: pcvw(50);
+            margin: 0 0 pcvw(62.1) pcvw(49);
+            line-height: 2;
+            letter-spacing: 0.1vw;
+
+            @include mq-tablet{
+                font-size: tbvw(19);
+                margin: 0 0 tbvw(26) tbvw(20.4);
+                line-height: 1;
+            }
+            @include mq-smartP {
+                font-size: smvw(14);
+                font-weight: lighter;
+                margin: 0 0 smvw(21)  smvw(14);
+            }
+            @include mq-iphone {
+              display: none;
+            }
+        }
+        &--titleMob {
+            display: none;
+            @include mq-iphone {
+                display: block;
+                font-size: ivw(22);
+                margin: ivw(91) 0;
+                letter-spacing: .2vw;
+            }
+        }
+        
+        &--txt {
+            font-size: pcvw(35);
+            margin-bottom: pcvw(56.6);
+            line-height: pcvw(50);
+            letter-spacing: 0;
+            @include mq-tablet{
+                font-size: tbvw(13);
+                line-height: 1;
+                margin-bottom: tbvw(29.1);
+            }
+            @include mq-smartP() {
+                line-height: 1.5;
+                font-size: smvw(9);
+                letter-spacing: .1vw;
+                margin-bottom: smvw(30);
+            }
+            @include mq-iphone {
+                width: auto;
+                text-align: left;
+                margin: 0 ivw(46.7);
+                font-size: ivw(15);
+                line-height: 1.7;
+            }
+        }
+        &--span {
+            @include mq-iphone {
+                display: none;
+            }
+        }
+        &--eng {
+            @include eng-var;
+                max-width: pcvw(526);
+                font-size: pcvw(35);
+                text-align: left;
+            @include mq-tablet {
+                font-size: tbvw(13);
+            }
+            @include mq-smartP  {
+                font-size: smvw(9);
+            }
+            @include mq-iphone  {
+                margin: ivw(40.2) 0 0 ivw(46.7);
+                font-size: ivw(15 );
+                line-height: 1.4;
+            }
+        }
+        &--engMob {
+            display: none;
+            @include mq-iphone {
+                display: block;
+            }
+        }
+        &--btn {
+            @include readmore;
+            height: pcvw(67.38);
+            margin: pcvw(123.4) 0 0 pcvw(205.4);
+            @include mq-tablet {
+                width: auto;
+                height: tbvw(27);
+                margin: tbvw(52.3) 0 0 tbvw(82);
+            }
+            @include mq-smartP {
+                height: smvw(27);
+                position: absolute;
+                right: smvw(49);
+                top: smvw(170);
+            }
+            @include mq-iphone {
+                top: ivw(410);
+                right: ivw(13);
+                height: ivw(34);
+                line-height: 1.5;
+            }
+        }
+        
+    }
+    &__img{
+        height: auto;
+        position: relative;
+        
+        @include mq-smartP() {
+            margin: 0 auto;
+            width: smvw(264.7);
+        }
+        @include mq-iphone {
+            width: 100%;
+           height: 434px;
+        }
+
+        &--family {
+            content: url('../img/family.png');
+            width: pcvw(698.02);
+            height: pcvw(476.13);
+            display: block;
+            margin-bottom: pcvw(79.9);
+
+            @include mq-tablet {
+                position: absolute;
+                top: tbvw(139);
+                right: 0;
+                width: tbvw(331.2);
+                height: tbvw(226);
+            }
+            @include mq-smartP {
+                top:  smvw(41.6);
+                right: 0; 
+                width: smvw(201);
+                height: smvw(137);
+                margin: 0;
+               
+            }
+            @include mq-iphone {
+                top: 222.2px;
+                right: 0; 
+                width: ivw(271);
+                height: ivw(178.48);
+            }
+        }
+        &--house {
+            content: url('../img/house.png');
+            width: pcvw(698);
+            height: pcvw(450.62);
+            display: block;
+            @include mq-tablet {
+                position: absolute;
+                top: tbvw(276);
+                right:  tbvw(271);
+                width: tbvw(165.19);
+                height: tbvw(111.21);
+            }
+            @include mq-smartP{
+                top: smvw(124.8);
+                left: 0;
+                width: smvw(100.2);
+                height: smvw(67.46);
+            }
+            @include mq-iphone{
+                top: ivw(78.6);
+                left: 0;
+                width: ivw(214.49);
+                height: ivw(144.05);
+                
+            }
+        }
+    }
+}
+@mixin layer {
+    width: auto;
+    padding: pcvw(128) pcvw(75) pcvw(149 ) pcvw(139);
+    position: relative;
+    @include mq-tablet {
+        padding: tbvw(51.2) tbvw(29.6) tbvw(59.7) tbvw(55.6);
+    }
+    @include mq-smartP {
+        padding: smvw(15.2) 0 0 0;
+    }
+    @include mq-iphone {
+        margin: 0;
+        padding: ivw(44) 0 ivw(26.2) 0;
+        
+    }
+}
+@mixin shadowlogo {
+    display: block;
+    color: rgba($color: #000000, $alpha: .1);
+    transform: rotate(-90deg);
+    position: absolute;
+    z-index: 0;
+    font-family: $midashi;
+}
+@mixin innerwrap {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: pcvw(73) 0 pcvw(101) 0;
+    @include mq-smartP {
+        margin: 0;
+        display: block;
+        text-align: right;
+    }
+    @include mq-iphone {
+        margin: 0;
+    }
+}
+@mixin inner {
+    min-width: pcvw(761);
+    width:  50%;
+    height: pcvw(465);
+    padding: pcvw(74) 0 0 pcvw(76) ;
+    position: absolute;
+    text-align: left;
+    position: relative;
+    font-size: pcvw(18);
+    letter-spacing: .1;
+    line-height: 1.6;
+    z-index: 1;
+    @include mq-tablet {
+        line-height: 1;
+    }
+    @include mq-smartP {
+        min-width: smvw(304.56);
+        width: 80%;
+        height: smvw(186.1);
+        font-size: smvw(9);
+        padding: smvw(25.7) 0 0 smvw(30.4);
+        top: smvw(20);
+    }
+    @include mq-iphone {
+        width: ivw(269);
+        height: ivw(400);
+        font-size: ivw(13);
+        padding: ivw(24) ivw(20) ivw(19.3) ivw(22);
+    }
+}
+@mixin gallery {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0 pcvw(123);
+    @include mq-tablet {
+        
+    }
+    @include mq-smartP {
+        padding: 0;
+        margin-top: 20px;
+    }
+}
+@mixin pic {
+    width: 20%;
+    height: auto;
+    margin: 0;
+    
+}
+@mixin  title {
+    font-size: 2.3vw;
+    font-weight: lighter;
+    position: relative;
+    text-shadow: 2px 2px 2px #808080;
+    letter-spacing: 0.2em;
+    @include mq-tablet{
+        font-size: tbvw(19);
+    }
+    @include mq-smartP {
+        font-size: smvw(19);
+        font-weight: lighter;
+        margin-left: smvw(28);
+    }
+    @include mq-iphone {
+        font-size: 6vw;
+        text-align: center;
+        margin: 8vw 0 12vw 0;
+    }
+}
+@mixin border {
+    content:"";
+    display:block;
+    width:230px;
+    height:2px;
+    background-color:#000;
+    position:absolute;
+    bottom:-20px;
+    left: 6vw;
+    @include mq-tablet {
+        left: 9vw;
+        width: 120px;
+    }
+    @include mq-smartP {
+        left: 20vw;
+    }
+    @include mq-iphone {
+        left: 35vw;
+        width: 50vw;
+        height: 1px;
+    }
+}
+.l-lodge {
+    @include layer;
+    background-color: #F8F8F8;
+
+    @include mq-iphone {
+        padding-bottom: 30px;
+    }
+    &__title {
+        @include title;
+        &::after{
+            @include border;
+         }
+      &--span {
+          margin-left: 2vw;
+      }
+      
+    }
+    &::before {
+        content: ("Lodge");
+        @include shadowlogo;
+        font-size: pcvw(140);
+        top: pcvw(220);
+        left: 0;
+        @include mq-smartP {
+            font-size: smvw(56);
+            top: smvw(55);
+            left: smvw(-38 );
+        };
+        @include mq-iphone {
+            font-size: ivw(80);
+            top:  52vw;
+            left: ivw(-40);
+        }
+    }
+}
+
+.p-lodge {
+    @include innerwrap;         
+    
+    &__inner{
+        @include inner;
+        top: pcvw(140);
+        left: pcvw(123);
+        background-color: rgba($color: #fff, $alpha: .8);
+        @include mq-tablet {
+       
+        }
+        @include mq-smartP() {
+            left: 15vw;
+        }
+        @include mq-iphone {
+            left: ivw(100);
+            right: 0;
+            top: ivw(18);
+            margin: 0;
+        }
+        &--txt{
+            @include mq-tablet{
+                transform: scale(.7) translateX(-20%) translateY(-30%);
+                line-height: 1.3;
+            }
+            @include mq-iphone{
+                font-size: ivw(15);
+                line-height: 1.6;
+                height: ivw(227);
+            }
+        }
+      
+        &--eng {
+            @include eng-var;
+            font-size: pcvw(15);
+            margin-top: pcvw(60);
+            @include mq-tablet{
+                position: absolute;
+                top: tbvw(99);
+                left: tbvw(30);
+                font-size: tbvw(6);
+                transform: scale(.7) translateX(-20%) translateY(-30%);
+            }
+            @include mq-smartP{
+                display: block;
+                transform: none;
+                left: smvw(30);
+                font-size: smvw(9);
+                margin-top: smvw(28);
+            }
+            @include mq-iphone{
+                font-size: ivw(15);
+                top: ivw(268);
+                width: ivw(200);
+            }
+            
+        }
+        &--btn {
+            @include readmore;
+                position: absolute;
+                top: pcvw(372);
+                left: pcvw(515);
+                @include mq-smartP {
+                    top: smvw(145.7);
+                    left: smvw(240 );
+                    @include mq-iphone {
+                        top: ivw(346);
+                        left: ivw(126.3);
+                    }
+                }
+        }
+    }
+    &__img {
+        width: 50%;
+        min-width: pcvw(898);
+        height: pcvw(583);
+        content: url('../img/Lodge-img.png');
+        @include mq-smartP {
+            margin: smvw(20) auto;
+            width: 90%;
+            min-width: smvw(359.39);
+            height: smvw(233.32);
+        }
+        @include mq-iphone {
+            display: absolute;
+            width: 100%;
+            top: 500px;
+
+        }
+    }
+
+    &__gallery {
+       @include gallery;
+       
+       &--pic1{
+           content: url('../img/gallery1.png');
+           @include pic;
+           
+       }       
+       &--pic2{
+           content: url('../img/gallery2.png');
+           @include pic;
+       }       
+       &--pic3{
+           content: url('../img/gallery3.png');
+           @include pic;
+       }       
+       &--pic4{
+           content: url('../img/gallery4.png');
+           @include pic;   
+       }       
+       &--pic5{
+           content: url('../img/gallery5.png');
+           @include pic;
+       }       
+    }
+}
+.l-food {
+    
+    position: relative;
+    @include layer;
+    @include mq-smartP{
+        padding-top: smvw(37.2);
+    }
+    
+    &__title {
+        width: auto;
+        font-size: pcvw(60);
+        font-weight: lighter;
+        margin-bottom: 100px;
+        text-shadow: 2px 2px 2px #808080;
+        letter-spacing: 0.2vw;
+        @include mq-tablet{
+          font-size: tbvw(23);
+          margin-left: tbvw(10);
+        }
+        @include mq-smartP {
+             font-size: smvw(23);
+             font-weight: lighter;
+             margin: 0 0 0 smvw(28);
+             padding: 0;
+             letter-spacing: .1;
+        }
+
+        @include mq-iphone() {
+            width: auto;
+            font-size: 6vw;
+            font-weight: lighter;
+            margin: 0;
+            text-align: center;
+        }
+        &::after {
+            @include border;
+            top: pcvw(230);
+            left: pcvw(359);
+            width: pcvw(383);
+            @include mq-tablet() {
+                top: 80px;
+                left: tbvw(140);
+                width: tbvw(153);
+            }
+          
+            @include mq-smartP() {
+                display: none;
+            }
+            @include mq-iphone {
+                display: block;
+                left: 35vw;
+                width: 50vw;
+                height: 1px;
+            }
+        }
+        &--span {
+            margin-left: 20px;
+        }
+    }
+    &::before {
+        content: ("Food Atelier& Lounge");
+        @include shadowlogo;
+        font-size: pcvw(70);
+        max-width: auto;
+        height: auto;
+        top: pcvw(400);
+        left: pcvw(-150);
+        @include mq-tablet{
+            font-size: tbvw(39);
+            top: tbvw(213);
+            left: tbvw(-115);
+        }
+        @include mq-smartP {
+            font-size: smvw(30);
+            top: smvw(175);
+            left: smvw(-100);
+        }
+        @include mq-iphone {
+            font-size: ivw(40);
+            top: 75vw;
+            left: -30vw;
+        }
+    }
+}
+.p-food {
+    @include innerwrap;   
+    @include mq-smartP {
+        height: 220px;
+    }
+    @include mq-iphone {
+        height: 230px;
+    }
+    justify-content: center;
+    &__img {
+        width: 50%;
+        margin:0 pcvw(-77) 0 pcvw(123);
+        content: url('../img/food-img.png');
+        @include mq-tablet {
+            margin-left: tbvw(68);
+        }
+        @include mq-smartP {
+            margin: 0 auto;
+            width: 90%;
+            height: auto;
+            margin-top: smvw(190);
+            z-index: 2;
+        }
+        @include mq-iphone {
+            display: absolute;
+            width: 100%;
+            margin: 0;
+            margin-top: ivw(582);
+        }
+    }
+    &__inner{
+        @include inner;
+        width: pcvw(806);
+        top: pcvw(-144);
+        left: 0;
+        background-color: rgba($color:  #F8F8F8, $alpha: .8);        
+        @include mq-tablet{
+           right: 0;
+        }
+        @include mq-smartP {
+            background-color: #fff;
+            top:  smvw(-462);
+            left: 15vw;
+        }
+        @include mq-iphone {
+            top:  ivw(-750);
+            right: 0;
+            left: ivw(100);
+            height: ivw(400);
+            background-color: rgba($color:  #F8F8F8, $alpha: .8);        
+        }
+        &--txt{
+            @include mq-tablet{
+                transform: scale(.7) translateX(-20%) translateY(-30%);
+                line-height: 1.3;
+            }
+            @include mq-iphone{
+                font-size: ivw(15);
+                line-height: 1.6;
+                height: ivw(227);
+            }
+        }
+        &--eng {
+            @include eng-var;
+            font-size: pcvw(15);
+            margin-top: pcvw(60);
+            @include mq-tablet{
+                position: absolute;
+                top: tbvw(99);
+                left: tbvw(30);
+                font-size: tbvw(6);
+                transform: scale(.7) translateX(-20%) translateY(-30%);
+            }
+            @include mq-smartP{
+                display: block;
+                transform: none;
+                left: smvw(30);
+                font-size: smvw(9);
+                margin-top: smvw(28);
+            }
+            @include mq-iphone{
+                font-size: ivw(15);
+                top: ivw(268);
+                width: ivw(200);
+            }
+            
+        }
+        &--btn {
+            @include readmore;
+            position: absolute;
+            bottom: 20px;
+            right: 5vw;
+            @include mq-tablet {
+                bottom: 1vw;
+            }
+            @include mq-smartP {
+                bottom: smvw(14.4);
+            }
+            @include mq-iphone{
+                bottom: ivw(26.2);
+            }
+        }
+    }
+
+    &__gallery {
+       @include gallery;
+        @include mq-tablet{
+            padding-left: tbvw(68);
+        }
+        @include mq-smartP{
+            padding-left: 0;
+            margin-top: smvw(70);
+        }
+       &--pic1{
+           @include pic;
+           content: url('../img/food1.png');
+       }       
+       &--pic2{
+           @include pic;
+           content: url('../img/food2.png');
+       }       
+       &--pic3{
+           @include pic;
+           content: url('../img/food3.png');
+       }       
+       &--pic4{
+           @include pic;   
+           content: url('../img/food4.png');
+       }       
+       &--pic5{
+           @include pic;
+           content: url('../img/food5.png');
+       }       
+    }
+}
+.l-program {
+    @include layer;
+    background-color: #F8F8F8;
+    @include mq-smartP {
+        background-color: #fff;
+        padding-top: smvw(38.2);
+    }
+    @include mq-iphone {
+        background-color: #F8F8F8;
+    }
+    &__title {
+       @include title;
+       font-size: pcvw(60);
+       @include mq-tablet{
+           font-size: tbvw(23);
+           margin-left: tbvw(10);
+       }
+       @include mq-smartP {
+            font-size: smvw(18);
+            font-weight: lighter;
+            padding: 0;
+       }
+       @include mq-iphone {
+            font-size: ivw(25);
+            line-height: 1.3;
+            margin-top: ivw(29);
+       }
+        &::after{
+                @include border;
+                top: pcvw(90);
+                width: pcvw(476);
+                height: 3px;
+                @include mq-tablet{
+                    width: tbvw(190);
+
+                }
+                @include mq-smartP {
+                    display: none;
+                }
+                @include mq-iphone() {
+                    display: block;
+                    width: ivw(197.5);
+                    top: ivw(83);
+                }
+        }
+      &--span {
+          margin-left: 20px;
+          @include mq-smartP {
+              margin-left: 10px;
+          }
+          @include mq-iphone {
+              &::before {
+                  content: "\A" ;
+                  white-space: pre ;
+                }
+          }
+        }
+    }
+    &::before {
+        content: ("Interactive");
+        @include shadowlogo;
+        max-width: auto;
+        font-size: pcvw(100);
+        height: pcvw(200);
+        top: pcvw(200);
+        left: pcvw(-10);
+        @include mq-tablet{
+            height: auto;
+            font-size: tbvw(39);
+            top: tbvw(130);
+            left: tbvw(-20);
+        }
+        @include mq-smartP {
+            font-size: smvw(28);
+            top: smvw(90);
+            left: smvw(-20);
+        }
+        @include mq-iphone {
+            font-size: ivw(60);
+            top: 82vw;
+            left: ivw(-60);
+        }
+    }
+}
+.p-program {
+    @include innerwrap;  
+    &__inner{
+        @include inner;
+        top: pcvw(129);
+        left: pcvw(123);
+        background-color: rgba($color: #fff, $alpha: .8);
+        @include mq-smartP() {
+            left: 15vw;
+        }
+        @include mq-iphone {
+            right: 0;
+            left: ivw(100);
+            top: 10vw;
+            padding: ivw(24) ivw(20) 0 ivw(15);
+        }
+
+        &--txt{
+            @include mq-tablet{
+                transform: scale(.7) translateX(-20%) translateY(-30%);
+                line-height: 1.3;
+            }
+            @include mq-iphone{
+                font-size: ivw(15);
+                line-height: 1.6;
+                height: ivw(227);
+            }
+        }
+        &--eng {
+            @include eng-var;
+            font-size: pcvw(15);
+            margin-top: pcvw(60);
+            @include mq-tablet{
+                position: absolute;
+                top: tbvw(99);
+                left: tbvw(30);
+                font-size: tbvw(6);
+                transform: scale(.7) translateX(-20%) translateY(-30%);
+            }
+            @include mq-smartP{
+                display: block;
+                transform: none;
+                left: smvw(30);
+                font-size: smvw(9);
+                margin-top: smvw(28);
+            }
+            @include mq-iphone{
+                font-size: ivw(15);
+                top: ivw(268);
+                width: ivw(200);
+            }
+            
+        }
+        &--btn {
+            @include readmore;
+            position: absolute;
+            bottom: pcvw(43.7);
+            right: pcvw(89.6);
+            @include mq-tablet {
+                bottom: tbvw(17.3);
+            }
+            @include mq-smartP() {
+                bottom: smvw(14.4);
+            }
+            @include mq-iphone {
+                right: ivw(20);
+                bottom: ivw(19.3);
+            }
+
+        }
+    }
+    &__img {
+        width: 50%;
+        content: url('../img/program-img.png');
+        @include mq-smartP {
+            margin: 40px auto 0 ;
+            width: 90%;
+        }
+        @include mq-iphone {
+            margin: 20vw 0 8vw 0;
+            width: 100%;
+        }
+    }
+
+    &__gallery {
+       @include gallery;
+       &--pic1{
+           @include pic;
+           content: url('../img/program1.png');
+       }       
+       &--pic2{
+           @include pic;
+           content: url('../img/program2.png');
+       }       
+       &--pic3{
+           @include pic;
+           content: url('../img/program3.png');
+       }       
+       &--pic4{
+           @include pic;   
+           content: url('../img/program4.png');
+       }       
+       &--pic5{
+           @include pic;
+           content: url('../img/program5.png');
+       }       
+    }
+}
+.l-access {
+   width: auto;
+   overflow:hidden;
+   padding: 6vw;
+   text-align: center;
+   @include mq-smartP {
+       padding: smvw(55) smvw(72) smvw(11) smvw(72);
+   }
+   @include mq-iphone {
+       padding: 0;
+   }
+   &__txt{
+      min-width: pcvw(746);
+       height: auto;
+       text-align: center;
+       margin: 100px auto;
+       line-height: 2.3;
+       font-size: pcvw(30);
+       @include mq-tablet {
+           max-width: 310px;
+           height: auto;
+           font-size: .7em;
+       }
+       @include mq-smartP { 
+           width: 50%;
+           display: none;
+        }
+       @include mq-iphone {
+           width: 100%;
+           font-size: ivw(15);
+           display: block;
+           height: auto;
+           line-height: 1.5;
+           margin: ivw(107) auto;
+        }
+   &--span {
+       display: none;
+       @include mq-tablet {
+           display: none;
+       }
+       @include mq-iphone {
+           display: block;
+       }
+   }
+  }
+}
+
+@mixin accessinner {
+    display: block;
+    width: 45%;
+    height: pcvw(395);
+    background-color: #F8F8F8;
+    text-align: left;
+    position: relative;
+    padding: 2.5vw 2.5vw 5vw 2.5vw;
+    @include mq-tablet {
+        width: 45%;
+        max-width: tbvw(270);
+        padding: tbvw(10) tbvw(32.8);
+    }
+    @include mq-smartP {
+        width: 100%;
+        max-width: smvw(270);
+        height: 160px;
+        padding: 20px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    @include mq-iphone {
+        max-width: ivw(294);
+        height: ivw(372);
+        padding: ivw(6) ivw(81) 0 0 ;
+        left: 100px;
+        text-align: center;
+        margin-bottom: 15vw;
+    }
+}
+@mixin accesstitle {
+    font-size: 2vw;
+    font-weight: normal;
+    margin: 0 0 2vw -4vw;
+    text-shadow: 2px 2px 2px #808080;
+    letter-spacing: .2vw;
+    @include mq-tablet {
+        font-size: tbvw(15);
+        line-height: tbvw(11);
+    }
+    @include mq-smartP() {
+        font-size: smvw(15);
+        letter-spacing: 0.1;
+        margin: 0 0 0 smvw(-27);
+        line-height: 1;
+
+    }
+    @include mq-iphone {
+      display: none;
+    }
+  
+}
+@mixin accesstxt {
+    line-height: 2vw;
+    margin-bottom: 1.2vw;
+    font-size: 1.1;
+    @include mq-tablet {
+        font-size: .6em;
+        margin-bottom: 20px;
+    }
+    @include mq-smartP {
+        font-size: smvw(9);
+        margin-top: smvw(9.6);
+        line-height: 1.5;
+    }
+    @include mq-iphone {
+        margin: ivw(35.4) 0 0 0;
+        font-size: ivw(15);
+    }
+}
+@mixin accessbtn {
+    display: inline-block;
+    position: absolute;
+    bottom: pcvw(37.7);
+    right: -2vw;
+    font-size: pcvw(20);
+    padding: auto;
+    width: pcvw(228.5);
+    height: pcvw(77.3);
+    line-height: pcvw(30);
+    @include mq-tablet {
+        right: tbvw(-20.6);
+        margin: 0;
+    }
+    @include mq-smartP {
+        width: smvw(91);
+        height: smvw(31);
+        bottom: smvw(27);
+        right: smvw(-14);
+        font-size: smvw(7);
+        padding: auto;
+    }
+    @include mq-iphone {
+        top: 100px;
+        right: -10px;
+    }
+}
+.p-access{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    margin: 80px auto;
+   
+    @include mq-smartP {
+        display: block;
+        padding: 0;
+        margin: 0;
+    }
+    @include mq-iphone {
+       width: 100%;
+        text-align: right;
+        padding: 0;
+    }
+    &__contact {
+        @include accessinner;
+
+        &--title{
+            @include accesstitle;
+        }
+        &--Mobile {
+            display: none;
+            @include mq-iphone {
+                display: block;
+                font-size: ivw(15);
+                font-weight: bold;
+                text-shadow: 2px 2px 2px #808080;
+            }
+        }
+        &--Mobilesub {
+            display: none;
+            @include mq-iphone {
+                margin-top: ivw(11);
+                display: block;
+                font-size: ivw(15);
+            }
+        }
+        &--txt {
+           @include accesstxt;
+        }
+        &--span {
+            @include mq-iphone {
+                &::before {
+                    content: "\A" ;
+                    white-space: pre ;
+                }
+                margin-bottom: 20px;
+            }
+        }
+        &--link{
+            @include eng-var;
+            font-size: pcvw(15);
+            @include mq-iphone {
+                margin: 0;
+                
+            }
+           
+        }
+        &--btn{
+            @include readmore;
+            @include accessbtn;
+            @include mq-iphone {
+                display: none;
+            }
+        }
+        &--btnMobContact {
+            display: none;
+            @include mq-iphone {
+                display: inline-block;               
+                margin-top: ivw(48.4 );
+                font-size: ivw(12);
+                line-height: 5vw;
+                text-decoration: none;
+                color: #000;
+                border: 1px solid #000;
+                padding: ivw(9) ivw(18) ivw(9) ivw(25); 
+
+            }
+        }
+        &--btnMobBooking {
+            display: none;
+            @include mq-iphone {
+                display: inline-block;
+                margin-top: ivw(14.6);
+                font-size: ivw(12);
+                line-height: 2.2;
+                text-decoration: none;
+                color: #000;
+                border: 1px solid #000;
+                padding: ivw(7.3) ivw(18.2) ivw(11.2) ivw(18.2);
+            }
+        }
+    }
+    &__booking {
+        @include accessinner;
+        @include mq-iphone {
+            display: none;
+        }
+        &--title{
+            @include accesstitle;
+        }
+        &--txt {
+            @include accesstxt;
+        }
+        &--link{
+            @include eng-var;
+            font-size: pcvw(15);
+        }
+        &--btn{
+            @include readmore;
+            @include accessbtn;
+        }
+    }
+}
+
+.l-footer {
+    width: auto;
+    overflow:hidden;
+    height: auto;
+    background-color: #000;
+    display: flex;
+    color: #fff;
+    @include mq-tablet{
+        height: 150px;
+    }
+    @include mq-smartP {
+        min-height: smvw(110);
+        height: auto;
+    }
+    @include mq-iphone {
+        display: block;
+        width: 100%;
+        min-height: ivw(428);
+        padding: 0 19vw;
+        text-align: center;
+        position: relative;
+    }
+}
+.p-footerlogo {
+    width: 30%;
+    background-image: url('../img/footerlogo.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    margin: pcvw(-30) 0 0 pcvw(57);
+    @include mq-tablet {
+       width: 20%;
+        margin: 0 20px;
+    }
+    @include mq-smartP() {
+        max-height: auto;
+        margin: 0 smvw(30) 0 10px;
+        }
+    @include mq-iphone {
+        display: block;
+        width: auto;
+        height: 50vw;
+        margin: 0 auto;
+    }
+}
+.p-footerinner {
+    padding: pcvw(42.7) 0 pcvw(19.7) pcvw(42.7) ;
+    margin: 0 auto;
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    text-align: left;
+    @include mq-tablet {
+        padding: 15px;
+    }
+    @include mq-smartP {
+        padding: smvw(5.3);
+        width: 80%;
+        margin: 0;
+    }
+    @include mq-iphone {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
+        margin-top: 15vw;
+        height: 25vw;
+    }
+
+    &__info {
+        width: 40%;
+        position: relative;
+        @include mq-smartP {
+           width: 40%;
+           font-size: smvw(7);
+        }
+        @include mq-iphone {
+            display: none;
+        }
+        
+        &--title{
+            font-size: pcvw(30);
+            text-decoration: underline ;
+            @include mq-tablet {
+                font-size: .8em;
+            }
+            @include mq-smartP() {
+                font-size: smvw(7);
+                transform: scale(.8);
+                margin-left: smvw(-20);
+            }
+        }
+        &--txt{
+            line-height: 1.3;
+            font-size: pcvw(23);
+            @include mq-tablet {
+                font-size: .6em;
+                line-height: .8;
+            }
+            @include mq-smartP {
+                position: absolute;
+                font-size: smvw(6);
+                transform: scale(.6);
+                top: 5px;
+                left: smvw(-40);
+            }
+        }
+        &--space {
+            @include mq-tablet {
+                display: none;
+            }
+        }
+    }
+    &__contact{
+        width: 50%;
+        position: relative;
+       
+        @include mq-iphone {
+            width: 100%;
+         }
+        &--title{
+            font-size: pcvw(30);
+            text-decoration: underline;
+            @include mq-tablet {
+                font-size: .8em;
+            }
+            @include mq-smartP() {
+                font-size: smvw(7);
+                transform: scale(.8);
+            }
+            @include mq-iphone {
+                display: none;
+            }
+        }
+        &--txt{
+            line-height: 1.3;
+            margin-left: 1.4vw;
+            font-size: pcvw(23);
+            @include mq-tablet {
+                font-size: .5em;
+                line-height: 1;
+            }
+            @include mq-smartP {
+                position: absolute;
+                margin: 0;
+                top: 5px;
+                left: smvw(-20 );
+                font-size: smvw(6);
+                transform: scale(.6);
+            }
+            @include mq-iphone {
+                font-size: ivw(13);
+               line-height: 1.6;
+               top: ivw(40);
+            }
+        }
+        &--space {
+            @include mq-tablet {
+                display: none;
+            }
+        }
+    }
+    &__logos {
+        font-size: 1.3vw;
+        margin-top: pcvw(24.6);
+        @include mq-tablet {
+            font-size: .5em;
+        }
+        @include mq-smartP {
+            width: auto;
+            height: auto;
+            font-size: smvw(5);
+            display: block;
+            position: absolute;
+            top: smvw(70);
+            left: smvw(20);
+        }
+        @include mq-iphone {
+            font-size: ivw(15);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            top: ivw(-70);
+            margin-bottom: 10px;
+            padding: 0 ivw(20);
+        }
+    }
+}
+.copyright {
+    width: auto;
+    height: 50px;
+    padding-left: 60px;
+    background-color:  #707070;
+    color: #fff;
+    line-height: 50px;
+    @include mq-tablet {
+        background-color: rgba($color: #000000, $alpha: .8);
+        height: 27px;
+        line-height: 27px;
+        padding-left: 30px;
+        align-items: left;
+        &__txt{
+
+            font-size: tbvw(1);
+            transform: scale(.5) translateX(-50%);
+        }
+    }
+    @include mq-iphone {
+        display: none;
+    }
+}
+.copyrightMob {
+    display: none;
+    @include mq-iphone {
+        display:block;
+        width: auto;
+        background-color:  #5c5b5b;
+        color: #fff;
+        line-height: 1.3;
+        font-size: ivw(10);
+        text-align: center;
+        padding: ivw(4)  auto;
+        margin: 0;
+    }
+}

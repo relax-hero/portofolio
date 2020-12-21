@@ -1,0 +1,32 @@
+@media all and (max-width: 980px){
+    .mainvisual {
+      width: 100%;
+    }
+    .header-list {
+      width: 100%;
+    }
+    .lists{
+      display:none;
+    }
+    .newslist{
+      width: 100%;
+    }
+    .aboutbox{
+        width:100px;
+        display: flex;
+        overflow: hidden;
+    }
+    .service-product{
+        width: 100%;
+    }
+    .service-inner {
+        width: 100%;
+    }
+    .newsfield {
+        width: 100%;
+    }
+    .about-text {
+        width: 100%;
+        display: flex;
+    }
+  }
